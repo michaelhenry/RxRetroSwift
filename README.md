@@ -9,16 +9,43 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+
 ## Requirements
+
+
+## Features
+- Easy to use and simple
+- Clean and Neat implementation
+- Support different Networking library (Alamofire, NSURLSession)
+- Flexible response error handling
+- Simplify your rest client.
+
+
+## TODO
+- Unit and integration test (in progress)
+- Add Example (in progress)
+- Support different authentication method for your `URLRequest`.
+
 
 ## Installation
 
-RxRetroSwift is available through [CocoaPods](http://cocoapods.org). To install
+RxRetroSwift is not yet available through [CocoaPods](http://cocoapods.org). But once it become available, to install
 it, simply add the following line to your Podfile:
+
 
 ```ruby
 pod 'RxRetroSwift'
 ```
+
+## Contributions
+
+Just feel free to submit pull request or suggest anything that would be useful.
+
+
+## Credits
+
+This uses RxSwift, Alamofire, ObjectMapper and Other 3rd party libraries.
+
 
 ## Author
 
@@ -27,3 +54,7 @@ Michael Henry Pantaleon, me@iamkel.net
 ## License
 
 RxRetroSwift is available under the MIT license. See the LICENSE file for more info.
+
+
+
+
