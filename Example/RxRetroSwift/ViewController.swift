@@ -7,18 +7,26 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+  
+  let disposeBag = DisposeBag()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    DefaultAPIClient.shared.getUsers().subscribe(onNext: { e in
+      print(e.value)
+    })
+    .disposed(by: disposeBag)
+    // Do any additional setup after loading the view, typically from a nib.
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
 }
 
