@@ -37,6 +37,38 @@ it, simply add the following line to your Podfile:
 pod 'RxRetroSwift'
 ```
 
+## Sample implementation
+
+```swift
+class DefaultAPIClient:APIClient {
+  
+  static var shared = DefaultAPIClient()
+  
+  var caller = DefaultRequestCaller.shared
+  
+  private init() {
+    
+    RequestModel.defaults.baseUrl = "https://jsonplaceholder.typicode.com"
+  }
+  
+  func getUsers() -> Observable<Result<[User],ErrorModel>> {
+    
+    let endpoint = "users"
+    let httpMethod = RequestModel.HttpMethod.get
+    
+    let request = RequestModel(
+      httpMethod: httpMethod,
+      endpoint: endpoint,
+      query: nil,
+      payload: nil,
+      headers: nil)
+      .asURLRequest()
+
+    return caller.call(request)
+  }
+}
+```
+
 ## Contributions
 
 Just feel free to submit pull request or suggest anything that would be useful.
