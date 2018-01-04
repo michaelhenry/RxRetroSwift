@@ -1,6 +1,6 @@
 # RxRetroSwift
 
-[![CI Status](http://img.shields.io/travis/Michael Henry Pantaleon/RxRetroSwift.svg?style=flat)](https://travis-ci.org/Michael Henry Pantaleon/RxRetroSwift)
+[![CI Status](https://travis-ci.org/michaelhenry/RxRetroSwift.svg?style=flat)](https://travis-ci.org/michaelhenry/RxRetroSwift)
 [![Version](https://img.shields.io/cocoapods/v/RxRetroSwift.svg?style=flat)](http://cocoapods.org/pods/RxRetroSwift)
 [![License](https://img.shields.io/cocoapods/l/RxRetroSwift.svg?style=flat)](http://cocoapods.org/pods/RxRetroSwift)
 [![Platform](https://img.shields.io/cocoapods/p/RxRetroSwift.svg?style=flat)](http://cocoapods.org/pods/RxRetroSwift)
