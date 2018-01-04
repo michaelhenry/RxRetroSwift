@@ -31,10 +31,7 @@ class DefaultAPIClient:APIClient {
     
     let request = RequestModel(
       httpMethod: httpMethod,
-      endpoint: endpoint,
-      query: nil,
-      payload: nil,
-      headers: nil)
+      endpoint: endpoint)
       .asURLRequest()
 
     return caller.call(request)
