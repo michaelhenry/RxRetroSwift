@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Michael Henry Pantaleon' => 'me@iamkel.net' }
-  s.source           = { :git => 'https://github.com/Michael Henry Pantaleon/RxRetroSwift.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/michaelhenry/RxRetroSwift.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/michaelhenry119'
 
   s.ios.deployment_target = '8.0'
