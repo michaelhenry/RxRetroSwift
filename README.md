@@ -22,8 +22,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 
 ## TODO
-- Unit and integration test (in progress)
-- Add Example (in progress)
+- Unit and integration test (done)
+- Add Example (done)
 - Support different authentication method for your `URLRequest`.
 
 
@@ -39,16 +39,63 @@ pod 'RxRetroSwift'
 
 ## Sample implementation
 
+Using [JSONPlaceholder API](https://jsonplaceholder.typicode.com).
+You can also check the [Sample Project](Example/)
+
 ```swift
 class DefaultAPIClient:APIClient {
-  
+ 
   static var shared = DefaultAPIClient()
-  
   var caller = DefaultRequestCaller.shared
   
   private init() {
     
     RequestModel.defaults.baseUrl = "https://jsonplaceholder.typicode.com"
+  }
+  
+  func getPosts() -> Observable<Result<[Post], ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .get,
+      endpoint: "posts")
+      .asURLRequest()
+    
+    return caller.call(request)
+  }
+  
+  func getComments() -> Observable<Result<[Comment], ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .get,
+      endpoint: "comments")
+      .asURLRequest()
+    
+    return caller.call(request)
+  }
+  
+  func getAlbums() -> Observable<Result<[Album], ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .get,
+      endpoint: "albums")
+      .asURLRequest()
+    
+    return caller.call(request)
+  }
+  
+  func getPhotos() -> Observable<Result<[Photo], ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .get,
+      endpoint: "photos")
+      .asURLRequest()
+    
+    return caller.call(request)
+  }
+  
+  func getTodos() -> Observable<Result<[Todo], ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .get,
+      endpoint: "todos")
+      .asURLRequest()
+    
+    return caller.call(request)
   }
   
   func getUsers() -> Observable<Result<[User],ErrorModel>> {
@@ -62,6 +109,55 @@ class DefaultAPIClient:APIClient {
   }
 }
 ```
+
+
+## Testing
+
+
+```swift
+
+class TestAPIClient:QuickSpec {
+  
+  override func spec() {
+    
+    describe("Using JSONPlaceholder API") {
+      
+      let apiClient = DefaultAPIClient.shared
+      
+      it("Check Posts result count"){
+        let observable = apiClient.getPosts()
+        expect(observable.map { $0.value!.count }).first == 100
+      }
+      
+      it("Check Comments result count"){
+        let observable = apiClient.getComments()
+        expect(observable.map { $0.value!.count }).first == 500
+      }
+      
+      it("Check Albums result count"){
+        let observable = apiClient.getAlbums()
+        expect(observable.map { $0.value!.count }).first == 100
+      }
+      
+      it("Check Photos result count"){
+        let observable = apiClient.getPhotos()
+        expect(observable.map { $0.value!.count }).first == 5000
+      }
+      
+      it("Check Todos result count"){
+        let observable = apiClient.getTodos()
+        expect(observable.map { $0.value!.count }).first == 200
+      }
+      
+      it("Check Users result count"){
+        let observable = apiClient.getUsers()
+        expect(observable.map { $0.value!.count }).first == 10
+      }
+    }
+  }
+}
+```
+
 
 ## Contributions
 
