@@ -1,6 +1,6 @@
 //
 //  DefaultRequestCaller.swift
-//  Pods
+//  RxRetroSwift
 //
 //  Created by Michael Henry Pantaleon on 2018/01/05.
 //
@@ -38,9 +38,7 @@ public class DefaultRequestCaller:RequestCaller {
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               } else {
-                var error = Mapper<ErrorObject>().map(JSON: [:] as! [String : Any])!
-                error.errorCode = statusCode
-                observer.onNext(Result.failure(error))
+                fallthrough
               }
             case .failure:
               var error = Mapper<ErrorObject>().map(JSON: [:] as! [String : Any])!
@@ -78,9 +76,7 @@ public class DefaultRequestCaller:RequestCaller {
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               } else {
-                var error = Mapper<ErrorObject>().map(JSON: [:] as! [String : Any])!
-                error.errorCode = statusCode
-                observer.onNext(Result.failure(error))
+                fallthrough
               }
               
             case .failure:
@@ -105,7 +101,7 @@ public class DefaultRequestCaller:RequestCaller {
         
         let request = Alamofire.request(request)
           .responseJSON { response in
-      
+            
             let statusCode = response.response?.statusCode ?? 0
             
             if let statusCode = response.response?.statusCode , (200 ... 399).contains(statusCode) {
@@ -119,7 +115,6 @@ public class DefaultRequestCaller:RequestCaller {
               error.errorCode = statusCode
               observer.onNext(Result.failure(error))
             }
-            
             observer.on(.completed)
         }
         

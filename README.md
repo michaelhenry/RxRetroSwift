@@ -53,12 +53,9 @@ class DefaultAPIClient:APIClient {
   
   func getUsers() -> Observable<Result<[User],ErrorModel>> {
     
-    let endpoint = "users"
-    let httpMethod = RequestModel.HttpMethod.get
-    
     let request = RequestModel(
-      httpMethod: httpMethod,
-      endpoint: endpoint)
+      httpMethod: .get,
+      endpoint: "users")
       .asURLRequest()
 
     return caller.call(request)
