@@ -13,6 +13,8 @@ import RxRetroSwift
 protocol APIClient {
   
   func getPosts()     -> Observable<Result<[Post],ErrorModel>>
+  func insertPost(post:Post) -> Observable<Result<Post,ErrorModel>>
+  
   func getComments()  -> Observable<Result<[Comment],ErrorModel>>
   func getAlbums()    -> Observable<Result<[Album],ErrorModel>>
   func getPhotos()    -> Observable<Result<[Photo],ErrorModel>>

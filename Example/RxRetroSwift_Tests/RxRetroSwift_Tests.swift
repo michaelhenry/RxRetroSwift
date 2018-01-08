@@ -29,6 +29,22 @@ class TestAPIClient:QuickSpec {
         expect(observable.map { $0.value!.count }).first == 100
       }
       
+      it("Can insert post"){
+        var post = Post()
+        let title = "This is my post"
+        let userId = 101
+        let body = "This is a message body"
+        
+        post.title = title
+        post.userId = userId
+        post.body = body
+        let observable = apiClient.insertPost(post: post)
+        expect(observable.map { $0.value?.title ?? "" }).first == title
+        expect(observable.map { $0.value?.userId ?? 0 }).first == userId
+        expect(observable.map { $0.value?.body ?? "" }).first == body
+      }
+      
+      
       it("Check Comments result count"){
         let observable = apiClient.getComments()
         expect(observable.map { $0.value!.count }).first == 500

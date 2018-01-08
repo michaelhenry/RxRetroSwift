@@ -62,6 +62,16 @@ class DefaultAPIClient:APIClient {
     return caller.call(request)
   }
   
+  func insertPost(post:Post) -> Observable<Result<Post, ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .post,
+      endpoint: "posts",
+      payload: post.toJSON())
+      .asURLRequest()
+    
+    return caller.call(request)
+  }
+
   func getComments() -> Observable<Result<[Comment], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
@@ -127,6 +137,21 @@ class TestAPIClient:QuickSpec {
       it("Check Posts result count"){
         let observable = apiClient.getPosts()
         expect(observable.map { $0.value!.count }).first == 100
+      }
+      
+      it("Can insert post"){
+        var post = Post()
+        let title = "This is my post"
+        let userId = 101
+        let body = "This is a message body"
+        
+        post.title = title
+        post.userId = userId
+        post.body = body
+        let observable = apiClient.insertPost(post: post)
+        expect(observable.map { $0.value?.title ?? "" }).first == title
+        expect(observable.map { $0.value?.userId ?? 0 }).first == userId
+        expect(observable.map { $0.value?.body ?? "" }).first == body
       }
       
       it("Check Comments result count"){

@@ -31,6 +31,16 @@ class DefaultAPIClient:APIClient {
     return caller.call(request)
   }
   
+  func insertPost(post:Post) -> Observable<Result<Post, ErrorModel>> {
+    let request = RequestModel(
+      httpMethod: .post,
+      endpoint: "posts",
+      payload: post.toJSON())
+      .asURLRequest()
+    
+    return caller.call(request)
+  }
+
   func getComments() -> Observable<Result<[Comment], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
