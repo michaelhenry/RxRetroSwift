@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxRetroSwift'
-  s.version          = '1.0.0'
+  s.version          = '1.0.3'
   s.summary          = 'A Simple, Neat and Clean, Easy to use Reactive RetroFit inspired implementation in swift.'
 
 # This description is used to generate tags and improve search results.
