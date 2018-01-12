@@ -24,12 +24,11 @@ class TestAPIClient:QuickSpec {
       
       let apiClient = DefaultAPIClient.shared
       
-      it("Check Posts result count"){
-        let observable = apiClient.getPosts()
-        expect(observable.map { $0.value!.count }).first == 100
-      }
-      
-      it("Can insert post"){
+      it("Can check the count & insert post"){
+        
+        let listObservable = apiClient.getPosts()
+        expect(listObservable.map { $0.value!.count }).first == 100
+        
         var post = Post()
         let title = "This is my post"
         let userId = 101
@@ -38,10 +37,10 @@ class TestAPIClient:QuickSpec {
         post.title = title
         post.userId = userId
         post.body = body
-        let observable = apiClient.insertPost(post: post)
-        expect(observable.map { $0.value?.title ?? "" }).first == title
-        expect(observable.map { $0.value?.userId ?? 0 }).first == userId
-        expect(observable.map { $0.value?.body ?? "" }).first == body
+        let insertObservable = apiClient.insertPost(post: post)
+        expect(insertObservable.map { $0.value!.title }).first == title
+        expect(insertObservable.map { $0.value!.userId }).first == userId
+        expect(insertObservable.map { $0.value!.body }).first == body
       }
       
       
