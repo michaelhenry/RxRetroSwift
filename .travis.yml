@@ -15,5 +15,5 @@ jobs:
       script:
         - pod lib lint --allow-warnings
         - pod trunk push
-      only:
+      on:
         tags: true
