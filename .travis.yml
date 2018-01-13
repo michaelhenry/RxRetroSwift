@@ -9,12 +9,11 @@ jobs:
         - cd Example
         - pod install
         - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
+
     - stage: deploy to cocoapods
       before_install:
         - gem install cocoapods
       script:
         - pod lib lint --allow-warnings
         - pod trunk push
-      on:
-        tags: true
-        condition: "$TRAVIS_TAG =~ ^[0-9].[0-9].[0-9]$"
+      if: tag IS present
