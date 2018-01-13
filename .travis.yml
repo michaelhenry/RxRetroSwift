@@ -17,6 +17,4 @@ jobs:
       script:
         - pod lib lint --allow-warnings
         - pod trunk push
-      branches:
-        only:
-          - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+      if: tag IS present
