@@ -8,8 +8,7 @@ jobs:
       script: 
         - cd Example
         - pod install
-        - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8'
-
+        - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -quiet
     - stage: deploy to cocoapods
       before_install:
         - gem install cocoapods
