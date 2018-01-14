@@ -28,14 +28,14 @@ public struct RequestModel {
   
   var baseUrl:String
   var httpMethod:HttpMethod
-  var endpoint:String
+  var path:String
   var query:[String:Any]?
   var payload:[String:Any?]?
   var headers:[String:String]?
   
   public init(
     httpMethod:HttpMethod,
-    endpoint:String,
+    path:String,
     baseUrl:String = RequestModel.defaults.baseUrl ?? "",
     query:[String:Any]? = nil,
     payload:[String:Any?]? = nil,
@@ -43,7 +43,7 @@ public struct RequestModel {
     
     self.baseUrl = baseUrl
     self.httpMethod = httpMethod
-    self.endpoint = endpoint
+    self.path = path
     self.query = query
     self.payload = payload
     self.headers = headers
@@ -56,7 +56,7 @@ extension RequestModel {
   
   public func asURLRequest() -> URLRequest {
     
-    let url = "\(baseUrl)/\(endpoint)"
+    let url = "\(baseUrl)/\(path)"
     
     var components = URLComponents(string: url)
     if let qItems = query {
