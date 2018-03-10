@@ -13,7 +13,7 @@ import RxCocoa
 import RxSwift
 
 class DefaultAPIClient:APIClient {
- 
+  
   static var shared = DefaultAPIClient()
   var caller = DefaultRequestCaller.shared
   
@@ -25,7 +25,7 @@ class DefaultAPIClient:APIClient {
   func getPosts() -> Observable<Result<[Post], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
-      endpoint: "posts")
+      path: "posts")
       .asURLRequest()
     
     return caller.call(request)
@@ -34,17 +34,17 @@ class DefaultAPIClient:APIClient {
   func insertPost(post:Post) -> Observable<Result<Post, ErrorModel>> {
     let request = RequestModel(
       httpMethod: .post,
-      endpoint: "posts",
+      path: "posts",
       payload: post.toJSON())
       .asURLRequest()
     
     return caller.call(request)
   }
-
+  
   func getComments() -> Observable<Result<[Comment], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
-      endpoint: "comments")
+      path: "comments")
       .asURLRequest()
     
     return caller.call(request)
@@ -53,7 +53,7 @@ class DefaultAPIClient:APIClient {
   func getAlbums() -> Observable<Result<[Album], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
-      endpoint: "albums")
+      path: "albums")
       .asURLRequest()
     
     return caller.call(request)
@@ -62,7 +62,7 @@ class DefaultAPIClient:APIClient {
   func getPhotos() -> Observable<Result<[Photo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
-      endpoint: "photos")
+      path: "photos")
       .asURLRequest()
     
     return caller.call(request)
@@ -71,7 +71,7 @@ class DefaultAPIClient:APIClient {
   func getTodos() -> Observable<Result<[Todo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
-      endpoint: "todos")
+      path: "todos")
       .asURLRequest()
     
     return caller.call(request)
@@ -81,9 +81,10 @@ class DefaultAPIClient:APIClient {
     
     let request = RequestModel(
       httpMethod: .get,
-      endpoint: "users")
+      path: "users")
       .asURLRequest()
-
+    
     return caller.call(request)
   }
 }
+
