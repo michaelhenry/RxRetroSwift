@@ -190,7 +190,7 @@ Just feel free to submit pull request or suggest anything that would be useful.
 
 ## Credits
 
-This library requires RxSwift.
+Starting v2.0, This library requires **RxSwift** for its reactive functionality.
 
 
 ## Author
