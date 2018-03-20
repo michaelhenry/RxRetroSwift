@@ -16,9 +16,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Features
 - Easy to use and simple
 - Clean and Neat implementation
-- Support different Networking library (Alamofire, NSURLSession)
 - Flexible response error handling
-- Simplify your rest client.
+- Simplify your rest API client.
 
 
 ## TODO
