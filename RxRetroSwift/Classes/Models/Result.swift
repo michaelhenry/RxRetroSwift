@@ -8,6 +8,7 @@
 import Foundation
 
 public enum Result<ValueObject, ErrorObject> {
+  case none
   case successful(ValueObject)
   case failure(ErrorObject)
   

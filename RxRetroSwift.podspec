@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxRetroSwift'
-  s.version          = ENV["RXRETROFIT_VERSION"] || '1.0.0'
+  s.version          = ENV["RXRETROFIT_VERSION"] || '2.0.0'
   s.summary          = 'A Simple, Neat and Clean, Easy to use Reactive RetroFit inspired implementation in swift.'
 
 # This description is used to generate tags and improve search results.
@@ -43,6 +43,4 @@ Pod::Spec.new do |s|
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'RxSwift', '~> 4.0'
   s.dependency 'RxCocoa', '~> 4.0'
-  s.dependency 'ObjectMapper', '~> 3.1'
-  s.dependency 'Alamofire',  '~> 4.5.1'
 end
