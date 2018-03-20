@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import ObjectMapper
 import RxRetroSwift
-import RxCocoa
 import RxSwift
+import RxCocoa
 
 fileprivate extension Encodable {
   var dictionaryValue:[String: Any?]? {

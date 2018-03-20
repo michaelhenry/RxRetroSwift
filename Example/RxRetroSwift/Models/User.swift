@@ -6,8 +6,6 @@
 //  Copyright © 2018 iamkel.net. All rights reserved.
 //
 import Foundation
-import ObjectMapper
-import RxRetroSwift
 
 struct User:Codable {
   var id:Int = 0

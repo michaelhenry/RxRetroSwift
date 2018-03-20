@@ -45,7 +45,7 @@ public class RequestCaller{
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               } else {
-                var error = try! _self.decoder.decode(CodableErrorModel.self, from: Data())
+                var error = CodableErrorModel()
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               }

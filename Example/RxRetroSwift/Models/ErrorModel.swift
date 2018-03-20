@@ -7,13 +7,9 @@
 //
 
 import Foundation
-import ObjectMapper
 import RxRetroSwift
-import RxCocoa
-import RxSwift
 
 struct ErrorModel:HasErrorCode, Codable {
   
   var errorCode: Int = 0
-
 }

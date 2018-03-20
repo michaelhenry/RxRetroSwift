@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
-import RxRetroSwift
 
 struct Company:Codable {
   

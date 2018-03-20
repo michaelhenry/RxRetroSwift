@@ -43,17 +43,17 @@ Using [JSONPlaceholder API](https://jsonplaceholder.typicode.com).
 You can also check the [Sample Project](Example/)
 
 ```swift
-class DefaultAPIClient:APIClient {
+class APIClient {
  
-  static var shared = DefaultAPIClient()
-  var caller = DefaultRequestCaller.shared
+  static var shared = APIClient()
+  var caller = RequestCaller.shared
   
   private init() {
     
     RequestModel.defaults.baseUrl = "https://jsonplaceholder.typicode.com"
   }
   
-  func getPosts() -> Observable<Result<[Post], ErrorModel>> {
+  func fetchPosts() -> Observable<Result<[Post], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "posts")
@@ -66,13 +66,13 @@ class DefaultAPIClient:APIClient {
     let request = RequestModel(
       httpMethod: .post,
       path: "posts",
-      payload: post.toJSON())
+      payload: post.dictionaryValue)
       .asURLRequest()
     
     return caller.call(request)
   }
 
-  func getComments() -> Observable<Result<[Comment], ErrorModel>> {
+  func fetchComments() -> Observable<Result<[Comment], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "comments")
@@ -81,7 +81,7 @@ class DefaultAPIClient:APIClient {
     return caller.call(request)
   }
   
-  func getAlbums() -> Observable<Result<[Album], ErrorModel>> {
+  func fetchAlbums() -> Observable<Result<[Album], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "albums")
@@ -90,7 +90,7 @@ class DefaultAPIClient:APIClient {
     return caller.call(request)
   }
   
-  func getPhotos() -> Observable<Result<[Photo], ErrorModel>> {
+  func fetchPhotos() -> Observable<Result<[Photo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "photos")
@@ -99,7 +99,7 @@ class DefaultAPIClient:APIClient {
     return caller.call(request)
   }
   
-  func getTodos() -> Observable<Result<[Todo], ErrorModel>> {
+  func fetchTodos() -> Observable<Result<[Todo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "todos")
@@ -108,7 +108,7 @@ class DefaultAPIClient:APIClient {
     return caller.call(request)
   }
   
-  func getUsers() -> Observable<Result<[User],ErrorModel>> {
+  func fetchUsers() -> Observable<Result<[User],ErrorModel>> {
     
     let request = RequestModel(
       httpMethod: .get,
@@ -132,10 +132,10 @@ class TestAPIClient:QuickSpec {
     
     describe("Using JSONPlaceholder API") {
       
-      let apiClient = DefaultAPIClient.shared
+      let apiClient = APIClient.shared
       
       it("Check Posts result count"){
-        let observable = apiClient.getPosts()
+        let observable = apiClient.fetchPosts()
         expect(observable.map { $0.value!.count }).first == 100
       }
       
@@ -155,27 +155,27 @@ class TestAPIClient:QuickSpec {
       }
       
       it("Check Comments result count"){
-        let observable = apiClient.getComments()
+        let observable = apiClient.fetchComments()
         expect(observable.map { $0.value!.count }).first == 500
       }
       
       it("Check Albums result count"){
-        let observable = apiClient.getAlbums()
+        let observable = apiClient.fetchAlbums()
         expect(observable.map { $0.value!.count }).first == 100
       }
       
       it("Check Photos result count"){
-        let observable = apiClient.getPhotos()
+        let observable = apiClient.fetchPhotos()
         expect(observable.map { $0.value!.count }).first == 5000
       }
       
       it("Check Todos result count"){
-        let observable = apiClient.getTodos()
+        let observable = apiClient.fetchTodos()
         expect(observable.map { $0.value!.count }).first == 200
       }
       
       it("Check Users result count"){
-        let observable = apiClient.getUsers()
+        let observable = apiClient.fetchUsers()
         expect(observable.map { $0.value!.count }).first == 10
       }
     }
@@ -191,7 +191,7 @@ Just feel free to submit pull request or suggest anything that would be useful.
 
 ## Credits
 
-This uses RxSwift, Alamofire, ObjectMapper and Other 3rd party libraries.
+This library requires RxSwift.
 
 
 ## Author

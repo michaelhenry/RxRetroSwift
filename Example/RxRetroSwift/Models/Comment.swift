@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
-
 
 struct Comment:Codable {
   
