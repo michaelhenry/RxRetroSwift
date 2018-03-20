@@ -10,23 +10,9 @@ import Foundation
 import ObjectMapper
 import RxRetroSwift
 
-struct Company {
+struct Company:Codable {
   
   var name:String = ""
   var catchPhrase:String = ""
   var bs:String = ""
-}
-
-extension Company:Mappable {
-  
-  init?(map: Map) {
-    
-  }
-  
-  mutating func mapping(map: Map) {
-    
-    name <- map["name"]
-    catchPhrase <- map["catchPhrase"]
-    bs <- map["bs"]
-  }
 }

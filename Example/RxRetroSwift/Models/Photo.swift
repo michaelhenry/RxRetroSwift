@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 
-struct Photo {
+struct Photo:Codable {
   
   var albumId:Int = 0
   var id:Int = 0
@@ -18,20 +18,3 @@ struct Photo {
   var url:String = ""
   var thumbnailUrl:String = ""
 }
-
-extension Photo:Mappable {
-  
-  init?(map: Map) {
-    
-  }
-  
-  mutating func mapping(map: Map) {
-    
-    albumId       <- map["userId"]
-    id            <- map["id"]
-    title         <- map["title"]
-    url           <- map["url"]
-    thumbnailUrl  <- map["thumbnailUrl"]
-  }
-}
-

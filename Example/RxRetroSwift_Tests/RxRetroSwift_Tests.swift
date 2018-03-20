@@ -22,11 +22,11 @@ class TestAPIClient:QuickSpec {
     
     describe("Using JSONPlaceholder API") {
       
-      let apiClient = DefaultAPIClient.shared
+      let apiClient = APIClient.shared
       
       it("Can check the count & insert post"){
         
-        let listObservable = apiClient.getPosts()
+        let listObservable = apiClient.fetchPosts()
         expect(listObservable.map { $0.value!.count }).first == 100
         
         var post = Post()
@@ -43,30 +43,39 @@ class TestAPIClient:QuickSpec {
         expect(insertObservable.map { $0.value!.body }).first == body
       }
       
-      
       it("Check Comments result count"){
-        let observable = apiClient.getComments()
+        let observable = apiClient.fetchComments()
         expect(observable.map { $0.value!.count }).first == 500
       }
       
       it("Check Albums result count"){
-        let observable = apiClient.getAlbums()
+        let observable = apiClient.fetchAlbums()
         expect(observable.map { $0.value!.count }).first == 100
       }
       
       it("Check Photos result count"){
-        let observable = apiClient.getPhotos()
+        let observable = apiClient.fetchPhotos()
         expect(observable.map { $0.value!.count }).first == 5000
       }
       
       it("Check Todos result count"){
-        let observable = apiClient.getTodos()
+        let observable = apiClient.fetchTodos()
         expect(observable.map { $0.value!.count }).first == 200
       }
       
       it("Check Users result count"){
-        let observable = apiClient.getUsers()
+        let observable = apiClient.fetchUsers()
         expect(observable.map { $0.value!.count }).first == 10
+      }
+      
+      it("Check a user is exist."){
+        let observable = apiClient.isExist(user: 1)
+        expect(observable.map { $0.value! }).first == true
+      }
+      
+      it("Check a user is not exist."){
+        let observable = apiClient.isExist(user: 1010101)
+        expect(observable.map { $0.error!.errorCode }).first == 404
       }
     }
   }

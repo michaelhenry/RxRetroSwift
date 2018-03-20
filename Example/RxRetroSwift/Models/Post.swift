@@ -9,28 +9,12 @@
 import Foundation
 import ObjectMapper
 
-struct Post {
+struct Post:Codable {
   
   var userId:Int = 0
   var id:Int = 0
   var title:String = ""
   var body:String = ""
-}
-
-extension Post:Mappable {
-  
-  init?(map: Map) {
-    
-  }
-  
-  mutating func mapping(map: Map) {
-  
-    userId  <- map["id"]
-    id      <- map["id"]
-    title   <- map["title"]
-    body    <- map["body"]
-  }
-  
 }
 
 

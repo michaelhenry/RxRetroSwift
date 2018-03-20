@@ -10,26 +10,10 @@ import Foundation
 import ObjectMapper
 
 
-struct Todo {
+struct Todo:Codable {
   
   var userId:Int = 0
   var id:Int = 0
   var title:String = ""
   var completed:Bool = false
-}
-
-
-extension Todo:Mappable {
-  
-  init?(map: Map) {
-    
-  }
-  
-  mutating func mapping(map: Map) {
-    
-    userId        <- map["userId"]
-    id            <- map["id"]
-    title         <- map["title"]
-    completed     <- map["completed"]
-  }
 }

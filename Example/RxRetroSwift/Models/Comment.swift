@@ -10,25 +10,11 @@ import Foundation
 import ObjectMapper
 
 
-struct Comment {
+struct Comment:Codable {
   
   var postId:Int = 0
   var id:Int = 0
   var email:String = ""
   var body:String = ""
-}
-
-extension Comment:Mappable {
-  
-  init?(map: Map) {
-    
-  }
-  
-  mutating func mapping(map: Map) {
-    postId  <- map["postId"]
-    id      <- map["id"]
-    email   <- map["email"]
-    body    <- map["postbodyId"]
-  }
 }
 

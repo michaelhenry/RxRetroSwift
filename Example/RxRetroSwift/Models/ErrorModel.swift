@@ -12,18 +12,8 @@ import RxRetroSwift
 import RxCocoa
 import RxSwift
 
-struct ErrorModel:HasErrorCode {
+struct ErrorModel:HasErrorCode, Codable {
   
   var errorCode: Int = 0
-}
 
-extension ErrorModel:Mappable {
-  
-  init?(map: Map) {
-    
-  }
-  
-  mutating func mapping(map: Map) {
-    
-  }
 }

@@ -10,25 +10,10 @@ import Foundation
 import ObjectMapper
 import RxRetroSwift
 
-struct Address {
+struct Address:Codable {
  
   var street:String = ""
   var suite:String = ""
   var city:String = ""
   var zipcode:String?
-}
-
-extension Address:Mappable {
-  
-  init?(map: Map) {
-  
-  }
-  
-  mutating func mapping(map: Map) {
-    
-    street <- map["street"]
-    suite <- map["suite"]
-    city <- map["city"]
-    zipcode <- map["zipcode"]
-  }
 }

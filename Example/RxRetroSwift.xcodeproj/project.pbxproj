@@ -14,10 +14,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		712BCB182504A8BFDBC5D776 /* Pods_RxRetroSwift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8B08090CD8A5D1162D6126 /* Pods_RxRetroSwift_Example.framework */; };
-		A60A3CF81FFE9BD900A2B078 /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3CF71FFE9BD900A2B078 /* DefaultAPIClient.swift */; };
+		A60A3CF81FFE9BD900A2B078 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3CF71FFE9BD900A2B078 /* APIClient.swift */; };
 		A60A3D001FFEA21700A2B078 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3CFF1FFEA21700A2B078 /* User.swift */; };
 		A60A3D021FFEA24900A2B078 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3D011FFEA24900A2B078 /* ErrorModel.swift */; };
-		A60A3D091FFEA31700A2B078 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3D081FFEA31700A2B078 /* APIClient.swift */; };
 		A60A3D0B1FFEA72700A2B078 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3D0A1FFEA72700A2B078 /* Company.swift */; };
 		A60A3D0D1FFEA73600A2B078 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3D0C1FFEA73600A2B078 /* Address.swift */; };
 		A60A3D151FFFC36D00A2B078 /* RxRetroSwift_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A3D141FFFC36D00A2B078 /* RxRetroSwift_Tests.swift */; };
@@ -53,10 +52,9 @@
 		84D12D93185D0D3667C58FB3 /* Pods-RxRetroSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRetroSwift_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxRetroSwift_Tests/Pods-RxRetroSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		87209867DD4159F96FF94824 /* RxRetroSwift.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RxRetroSwift.podspec; path = ../RxRetroSwift.podspec; sourceTree = "<group>"; };
 		962D953FD0B34D690DD0201D /* Pods-RxRetroSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRetroSwift_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRetroSwift_Example/Pods-RxRetroSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
-		A60A3CF71FFE9BD900A2B078 /* DefaultAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAPIClient.swift; sourceTree = "<group>"; };
+		A60A3CF71FFE9BD900A2B078 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		A60A3CFF1FFEA21700A2B078 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A60A3D011FFEA24900A2B078 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
-		A60A3D081FFEA31700A2B078 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		A60A3D0A1FFEA72700A2B078 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		A60A3D0C1FFEA73600A2B078 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		A60A3D121FFFC36D00A2B078 /* RxRetroSwift_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxRetroSwift_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +168,7 @@
 		A60A3D041FFEA2A300A2B078 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A60A3CF71FFE9BD900A2B078 /* DefaultAPIClient.swift */,
+				A60A3CF71FFE9BD900A2B078 /* APIClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,7 +192,6 @@
 		A60A3D071FFEA30600A2B078 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				A60A3D081FFEA31700A2B078 /* APIClient.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -446,12 +443,11 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				A60A3D0B1FFEA72700A2B078 /* Company.swift in Sources */,
 				A60A3D201FFFC44600A2B078 /* Comment.swift in Sources */,
-				A60A3CF81FFE9BD900A2B078 /* DefaultAPIClient.swift in Sources */,
+				A60A3CF81FFE9BD900A2B078 /* APIClient.swift in Sources */,
 				A60A3D1E1FFFC43100A2B078 /* Post.swift in Sources */,
 				A60A3D221FFFC46900A2B078 /* Album.swift in Sources */,
 				A60A3D0D1FFEA73600A2B078 /* Address.swift in Sources */,
 				A60A3D261FFFC48900A2B078 /* Todo.swift in Sources */,
-				A60A3D091FFEA31700A2B078 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

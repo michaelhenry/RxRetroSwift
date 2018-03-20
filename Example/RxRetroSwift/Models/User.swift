@@ -9,8 +9,8 @@ import Foundation
 import ObjectMapper
 import RxRetroSwift
 
-struct User {
-  var userId:Int = 0
+struct User:Codable {
+  var id:Int = 0
   var name:String = ""
   var username:String = ""
   var email:String = ""
@@ -20,23 +20,3 @@ struct User {
   var address:Address?
 }
 
-extension User:Mappable {
-  
-  init?(map: Map) {
-    if map.JSON["id"] == nil {
-      return nil
-    }
-  }
-  
-  mutating func mapping(map: Map) {
-    
-    userId <- map["id"]
-    name <- map["name"]
-    username <- map["username"]
-    email <- map["email"]
-    phone <- map["phone"]
-    website <- map["website"]
-    company <- map["company"]
-    address <- map["address"]
-  }
-}
