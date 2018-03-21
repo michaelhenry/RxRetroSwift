@@ -105,10 +105,8 @@
 		607FACD21AFB9204008FA782 /* Example for RxRetroSwift */ = {
 			isa = PBXGroup;
 			children = (
-				A60A3D071FFEA30600A2B078 /* Protocols */,
 				A60A3D051FFEA2A900A2B078 /* Models */,
 				A60A3D041FFEA2A300A2B078 /* Services */,
-				A60A3D031FFEA29900A2B078 /* Extensions */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -158,13 +156,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A60A3D031FFEA29900A2B078 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		A60A3D041FFEA2A300A2B078 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,13 +178,6 @@
 				A60A3D251FFFC48900A2B078 /* Todo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		A60A3D071FFEA30600A2B078 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A60A3D131FFFC36D00A2B078 /* RxRetroSwift_Tests */ = {
@@ -318,16 +302,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxRetroSwift_Example/Pods-RxRetroSwift_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRetroSwift/RxRetroSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRetroSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
