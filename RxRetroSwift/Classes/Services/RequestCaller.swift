@@ -59,8 +59,9 @@ public class RequestCaller{
       }
   }
   
-  public func execute<CodableErrorModel:CodableError>(_ request: URLRequest)
-    -> Observable<Result<Bool, CodableErrorModel>> {
+  
+  public func call<CodableErrorModel:CodableError>(_ request: URLRequest)
+    -> Observable<Result<HTTPURLResponse, CodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
         
@@ -72,7 +73,8 @@ public class RequestCaller{
             if let httpResponse = response as? HTTPURLResponse{
               let statusCode = httpResponse.statusCode
               if (200...399).contains(statusCode) {
-                observer.onNext(Result.successful(true))
+              
+                observer.onNext(Result.successful(httpResponse))
               } else if let value = data,
                 var error = try? _self.decoder.decode(CodableErrorModel.self, from: value) {
                 error.errorCode = statusCode

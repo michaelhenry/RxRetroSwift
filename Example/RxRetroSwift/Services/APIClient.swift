@@ -95,14 +95,5 @@ class APIClient {
     
     return caller.call(request)
   }
-  
-  func isExist(user userId: Int) -> Observable<Result<Bool, ErrorModel>> {
-    
-    let request = RequestModel(
-      httpMethod: .get,
-      path: "users/\(userId)")
-      .asURLRequest()
-    return caller.execute(request)
-  }
 }
 

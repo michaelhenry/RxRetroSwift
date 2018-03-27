@@ -67,16 +67,6 @@ class TestAPIClient:QuickSpec {
         let observable = apiClient.fetchUsers()
         expect(observable.map { $0.value!.count }).first == 10
       }
-      
-      it("Check a user is exist."){
-        let observable = apiClient.isExist(user: 1)
-        expect(observable.map { $0.value! }).first == true
-      }
-      
-      it("Check a user is not exist."){
-        let observable = apiClient.isExist(user: 1010101)
-        expect(observable.map { $0.error!.errorCode }).first == 404
-      }
     }
   }
 }
