@@ -24,7 +24,14 @@ fileprivate extension Encodable {
 class APIClient {
   
   static var shared = APIClient()
-  var caller = RequestCaller.shared
+
+  lazy var caller:RequestCaller = {
+    let config = URLSessionConfiguration.default
+    if #available(iOS 11.0, *) {
+      config.waitsForConnectivity = true
+    }
+    return RequestCaller(config: config)
+  }()
   
   private init() {
     
@@ -96,13 +103,14 @@ class APIClient {
     return caller.call(request)
   }
   
-  func isExist(user userId: Int) -> Observable<Result<Bool, ErrorModel>> {
+  func deleteUser(userId:Int) -> Observable<Result<RawResponse,ErrorModel>> {
     
     let request = RequestModel(
-      httpMethod: .get,
+      httpMethod: .delete,
       path: "users/\(userId)")
       .asURLRequest()
-    return caller.execute(request)
+    
+    return caller.call(request)
   }
 }
 

@@ -9,6 +9,9 @@ jobs:
         - cd Example
         - pod install
         - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -quiet
+    - stage: swift package manager
+      script:
+        - swift build
     - stage: deploy to cocoapods
       before_install:
         - echo $TRAVIS_TAG

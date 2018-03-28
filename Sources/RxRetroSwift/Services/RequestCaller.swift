@@ -15,15 +15,16 @@ public class RequestCaller{
   
   lazy var decoder = JSONDecoder()
   
+  private var config:URLSessionConfiguration
+  
   private lazy var urlSession:URLSession = {
-    var config = URLSessionConfiguration.default
     let session = URLSession(configuration: config)
     return session
   }()
   
-  public static var shared = RequestCaller()
-  
-  private init() {}
+  public init(config:URLSessionConfiguration) {
+    self.config = config
+  }
   
   public func call<ItemModel:Codable, CodableErrorModel:CodableError>(_ request: URLRequest)
     -> Observable<Result<ItemModel, CodableErrorModel>> {
@@ -59,8 +60,9 @@ public class RequestCaller{
       }
   }
   
-  public func execute<CodableErrorModel:CodableError>(_ request: URLRequest)
-    -> Observable<Result<Bool, CodableErrorModel>> {
+  
+  public func call<CodableErrorModel:CodableError>(_ request: URLRequest)
+    -> Observable<Result<RawResponse, CodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
         
@@ -72,7 +74,8 @@ public class RequestCaller{
             if let httpResponse = response as? HTTPURLResponse{
               let statusCode = httpResponse.statusCode
               if (200...399).contains(statusCode) {
-                observer.onNext(Result.successful(true))
+                let plainResponse = RawResponse(statusCode: statusCode, data: data)
+                observer.onNext(Result.successful(plainResponse))
               } else if let value = data,
                 var error = try? _self.decoder.decode(CodableErrorModel.self, from: value) {
                 error.errorCode = statusCode
