@@ -5,6 +5,88 @@
 [![License](https://img.shields.io/cocoapods/l/RxRetroSwift.svg?style=flat)](http://cocoapods.org/pods/RxRetroSwift)
 [![Platform](https://img.shields.io/cocoapods/p/RxRetroSwift.svg?style=flat)](http://cocoapods.org/pods/RxRetroSwift)
 
+
+## What does it do?
+
+What does it do?
+
+It simplifies your RESTful API calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) implementation.
+
+For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to [Codable] and specified it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
+
+```json
+{
+  "name":"kel",
+  "email":"me@iamkel.net"
+}
+```
+
+**`User` model that conforms to Codable.**
+```Swift
+struct User: Codable {
+  var name:String
+  var email:String
+}
+```
+
+**This will automatically convert the response into `User` model.**
+
+Example:
+```Swift
+
+let caller = RequestCaller(config: URLSessionConfiguration.default)
+
+func fetchUser(byUserId userId) -> Observable<Result<User, ErrorModel>> {
+    let request:URLRequest = RequestModel(
+      httpMethod: .get,
+      path: "v1/users/\(userId)")
+      .asURLRequest()
+    return caller.call(request)
+  }
+```
+
+**Let say it’s an array of users; since Array conforms to Codable, all you have to do is specify the type to be `[User]`.**
+
+Example:
+```Swift
+func fetchUsers() -> Observable<Result<[User], ErrorModel>> {
+    let request:URLRequest = RequestModel(
+      httpMethod: .get,
+      path: "v1/users")
+      .asURLRequest()
+    return caller.call(request)
+  }
+```
+
+About handling ResponseError:
+
+**RxRetroSwift** provided a typealias **ErrorCodable** which is a combination of [HasErrorCode](Sources/Protocols/HasErrorCode.swift) and [Decodable](https://developer.apple.com/documentation/swift/decodable) protocol:
+
+```Swift
+public typealias CodableError = Decodable & HasErrorCode
+```
+
+For example, the json error response of your login request is
+
+```Swift
+{
+  "message": "Unable to login."
+  "details": {
+    "password": "You changed your password 2 months ago."
+  }
+}
+```
+
+And you have this as Model:
+```Swift
+struct ErrorModel {
+
+  var errorCode:Int = 0
+  var message:String
+  var details:[String:String]
+}
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -12,13 +94,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+- [RxSwift](https://github.com/ReactiveX/RxSwift)
 
 ## Features
-- Easy to use and simple
-- Clean and Neat implementation
-- Flexible response error handling
+- Easy to use and simple, Just few lines of codes (excluding **RxSwift**).
+- Clean and Neat implementation.
+- Flexible error handling.
 - Simplify your rest API client.
-
 
 ## TODO
 - Unit and integration test (done)
@@ -186,11 +268,6 @@ class TestAPIClient:QuickSpec {
 ## Contributions
 
 Just feel free to submit pull request or suggest anything that would be useful.
-
-
-## Credits
-
-Starting v2.0, This library requires **RxSwift** for its reactive functionality.
 
 
 ## Author
