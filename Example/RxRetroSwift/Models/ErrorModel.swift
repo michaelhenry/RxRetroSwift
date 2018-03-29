@@ -11,5 +11,5 @@ import RxRetroSwift
 
 struct ErrorModel:HasErrorCode, Codable {
   
-  var errorCode: Int = 0
+  var errorCode: Int?
 }

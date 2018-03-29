@@ -9,7 +9,7 @@ import Foundation
 
 public protocol HasErrorCode {
   
-  var errorCode:Int { get set }
+  var errorCode:Int? { get set }
   
   init()
 }
