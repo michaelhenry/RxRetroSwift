@@ -10,9 +10,9 @@
 
 What does it do?
 
-It simplifies your RESTful API calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) implementation.
+It simplifies your RESTful API calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) feature.
 
-For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to [Codable] and specified it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
+For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to [Codable] and specify it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
 
 ```json
 {
@@ -29,7 +29,7 @@ struct User: Codable {
 }
 ```
 
-**This will automatically convert the response into `User` model.**
+**This will automatically convert the response into an instance `User` model.**
 
 Example:
 ```Swift
@@ -81,8 +81,8 @@ And you have this as Model:
 ```Swift
 struct ErrorModel {
 
-  var errorCode:Int = 0
-  var message:String
+  var errorCode:Int?
+  var message:String
   var details:[String:String]
 }
 ```
