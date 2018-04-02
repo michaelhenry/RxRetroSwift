@@ -50,8 +50,6 @@ public struct RequestModel {
   }
 }
 
-extension RequestModel:Configurable { }
-
 extension RequestModel {
   
   public func asURLRequest() -> URLRequest {
