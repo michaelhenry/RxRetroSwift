@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "3e848781c7756accced855a6317a4c2ff5e8588b",
+          "version": "4.1.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
