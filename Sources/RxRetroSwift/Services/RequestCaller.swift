@@ -15,7 +15,7 @@ public class RequestCaller{
   
   lazy var decoder = JSONDecoder()
   
-  private var config:URLSessionConfiguration
+  private var config:URLSessionConfiguration = URLSessionConfiguration.default
   
   private lazy var urlSession:URLSession = {
     let session = URLSession(configuration: config)
