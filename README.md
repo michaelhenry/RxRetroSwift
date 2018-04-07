@@ -110,12 +110,18 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
+#### Cocoapods
 RxRetroSwift is now available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 
 ```ruby
 pod 'RxRetroSwift'
+```
+#### Swift Package Manager
+
+```
+.package(url: "https://github.com/michaelhenry/RxRetroSwift", from: "2.1"),
 ```
 
 ## Sample implementation
