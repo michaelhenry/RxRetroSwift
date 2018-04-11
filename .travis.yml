@@ -1,18 +1,18 @@
-osx_image: xcode9.2
+osx_image: xcode9.3
 language: objective-c
 jobs:
   include:
-    - stage: testing
+    - stage: Testing
       before_install:
         - gem install cocoapods
       script: 
         - cd Example
         - pod install
         - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -quiet
-    - stage: swift package manager
+    - stage: Swift Package Manager
       script:
         - swift build
-    - stage: deploy to cocoapods
+    - stage: deploying to cocoapods
       before_install:
         - echo $TRAVIS_TAG
         - export RXRETROFIT_VERSION=$TRAVIS_TAG
