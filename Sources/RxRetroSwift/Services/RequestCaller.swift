@@ -26,7 +26,7 @@ public class RequestCaller{
     self.config = config
   }
   
-  public func call<ItemModel:Codable, CodableErrorModel:CodableError>(_ request: URLRequest)
+  public func call<ItemModel:Decodable, CodableErrorModel:CodableError>(_ request: URLRequest)
     -> Observable<Result<ItemModel, CodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
