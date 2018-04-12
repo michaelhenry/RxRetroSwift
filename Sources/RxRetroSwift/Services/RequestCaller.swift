@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public typealias CodableError = Decodable & HasErrorCode
+public typealias DecodableError = Decodable & HasErrorCode
 
 public class RequestCaller{
   
@@ -26,8 +26,8 @@ public class RequestCaller{
     self.config = config
   }
   
-  public func call<ItemModel:Decodable, CodableErrorModel:CodableError>(_ request: URLRequest)
-    -> Observable<Result<ItemModel, CodableErrorModel>> {
+  public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest)
+    -> Observable<Result<ItemModel, DecodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
         
@@ -42,11 +42,11 @@ public class RequestCaller{
                 let objs = try? _self.decoder.decode(ItemModel.self, from: value) {
                 observer.onNext(Result.successful(objs))
               } else if let value = data,
-                var error = try? _self.decoder.decode(CodableErrorModel.self, from: value) {
+                var error = try? _self.decoder.decode(DecodableErrorModel.self, from: value) {
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               } else {
-                var error = CodableErrorModel()
+                var error = DecodableErrorModel()
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               }
@@ -61,8 +61,8 @@ public class RequestCaller{
   }
   
   
-  public func call<CodableErrorModel:CodableError>(_ request: URLRequest)
-    -> Observable<Result<RawResponse, CodableErrorModel>> {
+  public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest)
+    -> Observable<Result<RawResponse, DecodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
         
@@ -77,11 +77,11 @@ public class RequestCaller{
                 let plainResponse = RawResponse(statusCode: statusCode, data: data)
                 observer.onNext(Result.successful(plainResponse))
               } else if let value = data,
-                var error = try? _self.decoder.decode(CodableErrorModel.self, from: value) {
+                var error = try? _self.decoder.decode(DecodableErrorModel.self, from: value) {
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               } else {
-                var error = CodableErrorModel()
+                var error = DecodableErrorModel()
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               }
