@@ -31,6 +31,6 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/michaelhenry119'
   s.ios.deployment_target = '9.0'
   s.source_files = 'Sources/RxRetroSwift/**/*'
-  s.dependency 'RxSwift', '~> 4.0'
-  s.dependency 'RxCocoa', '~> 4.0'
+  s.dependency 'RxSwift', '~> 4.1'
+  s.dependency 'RxCocoa', '~> 4.1'
 end
