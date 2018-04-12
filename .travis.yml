@@ -8,7 +8,7 @@ jobs:
       script: 
         - cd Example
         - pod install
-        - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -quiet
+        - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' -quiet
     - stage: Swift Package Manager
       script:
         - swift build
@@ -19,5 +19,5 @@ jobs:
         - gem install cocoapods
       script:
         - pod lib lint --allow-warnings
-        - pod trunk push
+        - pod trunk push --allow-warnings
       if: tag IS present
