@@ -38,79 +38,79 @@ class APIClient {
     RequestModel.defaults.baseUrl = "https://jsonplaceholder.typicode.com"
   }
   
-  func fetchPosts() -> Observable<Result<[Post], ErrorModel>> {
+  func fetchPosts() throws -> Observable<Result<[Post], ErrorModel>> {
     let request:URLRequest = RequestModel(
       httpMethod: .get,
       path: "posts")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func insertPost(post:Post) -> Observable<Result<Post, ErrorModel>> {
+  func insertPost(post:Post) throws -> Observable<Result<Post, ErrorModel>> {
     let request = RequestModel(
       httpMethod: .post,
       path: "posts",
       payload: post.dictionaryValue)
       .asURLRequest()
 
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func fetchComments() -> Observable<Result<[Comment], ErrorModel>> {
+  func fetchComments() throws -> Observable<Result<[Comment], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "comments")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func fetchAlbums() -> Observable<Result<[Album], ErrorModel>> {
+  func fetchAlbums() throws -> Observable<Result<[Album], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "albums")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func fetchPhotos() -> Observable<Result<[Photo], ErrorModel>> {
+  func fetchPhotos() throws -> Observable<Result<[Photo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "photos")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func fetchTodos() -> Observable<Result<[Todo], ErrorModel>> {
+  func fetchTodos() throws -> Observable<Result<[Todo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "todos")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func fetchUsers() -> Observable<Result<[User],ErrorModel>> {
+  func fetchUsers() throws -> Observable<Result<[User],ErrorModel>> {
     
     let request = RequestModel(
       httpMethod: .get,
       path: "users")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
   
-  func deleteUser(userId:Int) -> Observable<Result<RawResponse,ErrorModel>> {
+  func deleteUser(userId:Int) throws -> Observable<Result<RawResponse,ErrorModel>> {
     
     let request = RequestModel(
       httpMethod: .delete,
       path: "users/\(userId)")
       .asURLRequest()
     
-    return caller.call(request)
+    return try caller.call(request)
   }
 }
 
