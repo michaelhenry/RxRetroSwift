@@ -26,7 +26,7 @@ public class RequestCaller{
     self.config = config
   }
   
-  public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest)
+  public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest) throws
     -> Observable<Result<ItemModel, DecodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
@@ -38,15 +38,11 @@ public class RequestCaller{
             
             if let httpResponse = response as? HTTPURLResponse{
               let statusCode = httpResponse.statusCode
-              if let value = data,
-                let objs = try? _self.decoder.decode(ItemModel.self, from: value) {
+              if (200...399).contains(statusCode) {
+                let objs = try! _self.decoder.decode(ItemModel.self, from: data!)
                 observer.onNext(Result.successful(objs))
-              } else if let value = data,
-                var error = try? _self.decoder.decode(DecodableErrorModel.self, from: value) {
-                error.errorCode = statusCode
-                observer.onNext(Result.failure(error))
               } else {
-                var error = DecodableErrorModel()
+                var error = try! _self.decoder.decode(DecodableErrorModel.self, from: data!)
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               }
@@ -60,8 +56,7 @@ public class RequestCaller{
       }
   }
   
-  
-  public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest)
+  public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest) throws
     -> Observable<Result<RawResponse, DecodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
@@ -76,17 +71,13 @@ public class RequestCaller{
               if (200...399).contains(statusCode) {
                 let plainResponse = RawResponse(statusCode: statusCode, data: data)
                 observer.onNext(Result.successful(plainResponse))
-              } else if let value = data,
-                var error = try? _self.decoder.decode(DecodableErrorModel.self, from: value) {
-                error.errorCode = statusCode
-                observer.onNext(Result.failure(error))
               } else {
-                var error = DecodableErrorModel()
+                var error = try! _self.decoder.decode(DecodableErrorModel.self, from: data!)
                 error.errorCode = statusCode
                 observer.onNext(Result.failure(error))
               }
+              observer.on(.completed)
             }
-            observer.on(.completed)
         }
         task.resume()
         return Disposables.create {
