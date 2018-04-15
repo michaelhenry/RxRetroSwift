@@ -87,7 +87,7 @@ struct ErrorModel {
 
 How about dealing to a request that don't expect to return an object or model?
 
-**RxRetroSwift** provide a method that will return [RawResponse](Sources/RxRetroSwift/Models/RawResponse.swift).
+**RxRetroSwift** provide a method that will return Observable<Result<[RawResponse](Sources/RxRetroSwift/Models/RawResponse.swift)>, DecodableErrorModel>>.
 
 ```swift
 
