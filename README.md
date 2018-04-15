@@ -8,11 +8,9 @@
 
 ## What does it do?
 
-What does it do?
+It simplifies your **RESTful API** calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) feature.
 
-It simplifies your RESTful API calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) feature.
-
-For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to [Codable] and specify it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
+For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to Codable](https://developer.apple.com/documentation/swift/codable) and specify it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
 
 ```json
 {
