@@ -1,5 +1,5 @@
 //
-//  PlainResponse.swift
+//  RawResponse.swift
 //  Nimble
 //
 //  Created by Michael Pantaleon on 2018/03/28.

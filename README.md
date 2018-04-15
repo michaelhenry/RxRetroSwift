@@ -85,6 +85,30 @@ struct ErrorModel {
 }
 ```
 
+How about dealing to a request that don't expect to return an object or model?
+
+**RxRetroSwift** provide a method that will return [RawResponse](Sources/RxRetroSwift/Models/RawResponse.swift).
+
+```swift
+
+public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest) throws
+  -> Observable<Result<RawResponse, DecodableErrorModel>>
+```
+
+```swift
+
+public struct RawResponse {
+  
+  public var statusCode:Int
+  public var data:Data?
+  
+  init(statusCode:Int, data:Data?) {
+    self.statusCode = statusCode
+    self.data       = data
+  }
+}
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -281,7 +305,3 @@ Michael Henry Pantaleon, me@iamkel.net
 ## License
 
 RxRetroSwift is available under the MIT license. See the LICENSE file for more info.
-
-
-
-
