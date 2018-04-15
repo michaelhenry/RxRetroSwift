@@ -26,7 +26,7 @@ class TestAPIClient:QuickSpec {
       
       it("Can check the count & insert post"){
         
-        let listObservable = apiClient.fetchPosts()
+        let listObservable = try! apiClient.fetchPosts()
         expect(listObservable.map { $0.value!.count }).first == 100
         
         var post = Post()
@@ -37,34 +37,34 @@ class TestAPIClient:QuickSpec {
         post.title = title
         post.userId = userId
         post.body = body
-        let insertObservable = apiClient.insertPost(post: post)
+        let insertObservable = try! apiClient.insertPost(post: post)
         expect(insertObservable.map { $0.value!.title }).first == title
         expect(insertObservable.map { $0.value!.userId }).first == userId
         expect(insertObservable.map { $0.value!.body }).first == body
       }
       
       it("Check Comments result count"){
-        let observable = apiClient.fetchComments()
+        let observable = try! apiClient.fetchComments()
         expect(observable.map { $0.value!.count }).first == 500
       }
       
       it("Check Albums result count"){
-        let observable = apiClient.fetchAlbums()
+        let observable = try! apiClient.fetchAlbums()
         expect(observable.map { $0.value!.count }).first == 100
       }
       
       it("Check Photos result count"){
-        let observable = apiClient.fetchPhotos()
+        let observable = try! apiClient.fetchPhotos()
         expect(observable.map { $0.value!.count }).first == 5000
       }
       
       it("Check Todos result count"){
-        let observable = apiClient.fetchTodos()
+        let observable = try! apiClient.fetchTodos()
         expect(observable.map { $0.value!.count }).first == 200
       }
       
       it("Check Users result count"){
-        let observable = apiClient.fetchUsers()
+        let observable = try! apiClient.fetchUsers()
         expect(observable.map { $0.value!.count }).first == 10
       }
     }
