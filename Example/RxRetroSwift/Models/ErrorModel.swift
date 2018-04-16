@@ -9,7 +9,8 @@
 import Foundation
 import RxRetroSwift
 
-struct ErrorModel:HasErrorCode, Codable {
+struct ErrorModel:HasErrorInfo, Codable {
   
   var errorCode: Int?
+  var errorDetail: String?
 }

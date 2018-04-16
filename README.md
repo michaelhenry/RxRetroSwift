@@ -8,11 +8,9 @@
 
 ## What does it do?
 
-What does it do?
+It simplifies your **RESTful API** calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) feature.
 
-It simplifies your RESTful API calls, automatically convert the `HttpResponse` into specified Model as well as the Error using the new apple ’s [Codable](https://developer.apple.com/documentation/swift/codable) feature.
-
-For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to [Codable] and specify it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
+For example in a request for fetching specific user information and you have a `User` model, all you have to do is make the User model conforms to [Codable](https://developer.apple.com/documentation/swift/codable) and specify it when using the [RequestCaller](Sources/Services/RequestCaller.swift).
 
 ```json
 {
@@ -60,10 +58,10 @@ func fetchUsers() -> Observable<Result<[User], ErrorModel>> {
 
 About handling ResponseError:
 
-**RxRetroSwift** provided a typealias **ErrorCodable** which is a combination of [HasErrorCode](Sources/Protocols/HasErrorCode.swift) and [Decodable](https://developer.apple.com/documentation/swift/decodable) protocol:
+**RxRetroSwift** provided a typealias **ErrorCodable** which is a combination of [HasErrorInfo](Sources/Protocols/HasErrorInfo.swift) and [Decodable](https://developer.apple.com/documentation/swift/decodable) protocol:
 
 ```Swift
-public typealias CodableError = Decodable & HasErrorCode
+public typealias DecodableError = Decodable & HasErrorInfo
 ```
 
 For example, the json error response of your login request is
@@ -84,6 +82,30 @@ struct ErrorModel {
   var errorCode:Int?
   var message:String
   var details:[String:String]
+}
+```
+
+How about dealing to a request that don't expect to return an object or model?
+
+**RxRetroSwift** provide a method that will return Observable<Result<[RawResponse](Sources/RxRetroSwift/Models/RawResponse.swift)>, DecodableErrorModel>>.
+
+```swift
+
+public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest)
+  -> Observable<Result<RawResponse, DecodableErrorModel>>
+```
+
+```swift
+
+public struct RawResponse {
+  
+  public var statusCode:Int
+  public var data:Data?
+  
+  init(statusCode:Int, data:Data?) {
+    self.statusCode = statusCode
+    self.data       = data
+  }
 }
 ```
 
