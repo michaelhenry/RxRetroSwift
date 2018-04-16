@@ -7,7 +7,10 @@
 
 import Foundation
 
-public protocol HasErrorCode {
+public protocol HasErrorInfo {
   
   var errorCode:Int? { get set }
+  var errorDetail:String? { get set }
+  
+  init()
 }

@@ -34,12 +34,12 @@ Example:
 
 let caller = RequestCaller(config: URLSessionConfiguration.default)
 
-func fetchUser(byUserId userId) throws -> Observable<Result<User, ErrorModel>> {
+func fetchUser(byUserId userId) -> Observable<Result<User, ErrorModel>> {
     let request:URLRequest = RequestModel(
       httpMethod: .get,
       path: "v1/users/\(userId)")
       .asURLRequest()
-    return try caller.call(request)
+    return caller.call(request)
   }
 ```
 
@@ -47,21 +47,21 @@ func fetchUser(byUserId userId) throws -> Observable<Result<User, ErrorModel>> {
 
 Example:
 ```Swift
-func fetchUsers() throws -> Observable<Result<[User], ErrorModel>> {
+func fetchUsers() -> Observable<Result<[User], ErrorModel>> {
     let request:URLRequest = RequestModel(
       httpMethod: .get,
       path: "v1/users")
       .asURLRequest()
-    return try caller.call(request)
+    return caller.call(request)
   }
 ```
 
 About handling ResponseError:
 
-**RxRetroSwift** provided a typealias **ErrorCodable** which is a combination of [HasErrorCode](Sources/Protocols/HasErrorCode.swift) and [Decodable](https://developer.apple.com/documentation/swift/decodable) protocol:
+**RxRetroSwift** provided a typealias **ErrorCodable** which is a combination of [HasErrorInfo](Sources/Protocols/HasErrorInfo.swift) and [Decodable](https://developer.apple.com/documentation/swift/decodable) protocol:
 
 ```Swift
-public typealias CodableError = Decodable & HasErrorCode
+public typealias DecodableError = Decodable & HasErrorInfo
 ```
 
 For example, the json error response of your login request is
@@ -91,7 +91,7 @@ How about dealing to a request that don't expect to return an object or model?
 
 ```swift
 
-public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest) throws
+public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest)
   -> Observable<Result<RawResponse, DecodableErrorModel>>
 ```
 
@@ -162,69 +162,69 @@ class APIClient {
     RequestModel.defaults.baseUrl = "https://jsonplaceholder.typicode.com"
   }
   
-  func fetchPosts() throws -> Observable<Result<[Post], ErrorModel>> {
+  func fetchPosts() -> Observable<Result<[Post], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "posts")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
-  func insertPost(post:Post) throws -> Observable<Result<Post, ErrorModel>> {
+  func insertPost(post:Post) -> Observable<Result<Post, ErrorModel>> {
     let request = RequestModel(
       httpMethod: .post,
       path: "posts",
       payload: post.dictionaryValue)
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
 
-  func fetchComments() throws -> Observable<Result<[Comment], ErrorModel>> {
+  func fetchComments() -> Observable<Result<[Comment], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "comments")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
-  func fetchAlbums() throws -> Observable<Result<[Album], ErrorModel>> {
+  func fetchAlbums() -> Observable<Result<[Album], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "albums")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
-  func fetchPhotos() throws -> Observable<Result<[Photo], ErrorModel>> {
+  func fetchPhotos() -> Observable<Result<[Photo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "photos")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
-  func fetchTodos() throws -> Observable<Result<[Todo], ErrorModel>> {
+  func fetchTodos() -> Observable<Result<[Todo], ErrorModel>> {
     let request = RequestModel(
       httpMethod: .get,
       path: "todos")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
-  func fetchUsers() throws -> Observable<Result<[User],ErrorModel>> {
+  func fetchUsers() -> Observable<Result<[User],ErrorModel>> {
     
     let request = RequestModel(
       httpMethod: .get,
       path: "users")
       .asURLRequest()
 
-    return try caller.call(request)
+    return caller.call(request)
   }
 }
 ```
@@ -305,3 +305,7 @@ Michael Henry Pantaleon, me@iamkel.net
 ## License
 
 RxRetroSwift is available under the MIT license. See the LICENSE file for more info.
+
+
+
+

@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public typealias DecodableError = Decodable & HasErrorCode
+public typealias DecodableError = Decodable & HasErrorInfo
 
 public class RequestCaller{
   
@@ -26,7 +26,7 @@ public class RequestCaller{
     self.config = config
   }
   
-  public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest) throws
+  public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest)
     -> Observable<Result<ItemModel, DecodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
@@ -38,13 +38,21 @@ public class RequestCaller{
             
             if let httpResponse = response as? HTTPURLResponse{
               let statusCode = httpResponse.statusCode
-              if (200...399).contains(statusCode) {
-                let objs = try! _self.decoder.decode(ItemModel.self, from: data!)
-                observer.onNext(Result.successful(objs))
-              } else {
-                var error = try! _self.decoder.decode(DecodableErrorModel.self, from: data!)
-                error.errorCode = statusCode
-                observer.onNext(Result.failure(error))
+              
+              do {
+                if (200...399).contains(statusCode) {
+                  let objs = try _self.decoder.decode(ItemModel.self, from: data!)
+                  observer.onNext(Result.successful(objs))
+                } else {
+                  var error = try _self.decoder.decode(DecodableErrorModel.self, from: data!)
+                  error.errorCode = statusCode
+                  observer.onNext(Result.failure(error))
+                }
+              } catch {
+                var decodingError = DecodableErrorModel()
+                decodingError.errorCode = -1
+                decodingError.errorDetail = error.localizedDescription
+                observer.onNext(Result.failure(decodingError))
               }
             }
             observer.on(.completed)
@@ -56,7 +64,7 @@ public class RequestCaller{
       }
   }
   
-  public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest) throws
+  public func call<DecodableErrorModel:DecodableError>(_ request: URLRequest)
     -> Observable<Result<RawResponse, DecodableErrorModel>> {
       
       return Observable.create { [weak self] observer in
@@ -68,13 +76,22 @@ public class RequestCaller{
             
             if let httpResponse = response as? HTTPURLResponse{
               let statusCode = httpResponse.statusCode
-              if (200...399).contains(statusCode) {
-                let plainResponse = RawResponse(statusCode: statusCode, data: data)
-                observer.onNext(Result.successful(plainResponse))
-              } else {
-                var error = try! _self.decoder.decode(DecodableErrorModel.self, from: data!)
-                error.errorCode = statusCode
-                observer.onNext(Result.failure(error))
+              
+              do {
+                if (200...399).contains(statusCode) {
+                  let plainResponse = RawResponse(statusCode: statusCode, data: data)
+                  observer.onNext(Result.successful(plainResponse))
+                } else {
+                  var error = try _self.decoder.decode(DecodableErrorModel.self, from: data!)
+                  error.errorCode = statusCode
+                  observer.onNext(Result.failure(error))
+                }
+                
+              } catch {
+                var decodingError = DecodableErrorModel()
+                decodingError.errorCode = -1
+                decodingError.errorDetail = error.localizedDescription
+                observer.onNext(Result.failure(decodingError))
               }
               observer.on(.completed)
             }
