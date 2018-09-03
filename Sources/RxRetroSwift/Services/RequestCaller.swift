@@ -13,17 +13,11 @@ public typealias DecodableError = Decodable & HasErrorInfo
 
 public class RequestCaller{
   
-  lazy var decoder = JSONDecoder()
+  private lazy var decoder = JSONDecoder()
+  private var urlSession:URLSession
   
-  private var config:URLSessionConfiguration = URLSessionConfiguration.default
-  
-  private lazy var urlSession:URLSession = {
-    let session = URLSession(configuration: config)
-    return session
-  }()
-  
-  public init(config:URLSessionConfiguration) {
-    self.config = config
+  public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
+    urlSession = URLSession(configuration: config)
   }
   
   public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest)
