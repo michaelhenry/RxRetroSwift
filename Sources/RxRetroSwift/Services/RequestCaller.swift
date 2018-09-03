@@ -16,8 +16,12 @@ public class RequestCaller{
   private lazy var decoder = JSONDecoder()
   private var urlSession:URLSession
   
-  public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
+  public init(config:URLSessionConfiguration) {
     urlSession = URLSession(configuration: config)
+  }
+  
+  public convenience init() {
+    self.init(config: URLSessionConfiguration.default)
   }
   
   public func call<ItemModel:Decodable, DecodableErrorModel:DecodableError>(_ request: URLRequest)
