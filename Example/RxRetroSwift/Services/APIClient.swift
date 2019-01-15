@@ -38,13 +38,13 @@ class APIClient {
     RequestModel.defaults.baseUrl = "https://jsonplaceholder.typicode.com"
   }
   
-  func fetchPosts() throws -> Observable<Result<[Post], ErrorModel>> {
+  func fetchPosts() -> Observable<Result<[Post], ErrorModel>> {
     let request:URLRequest = RequestModel(
       httpMethod: .get,
       path: "posts")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func insertPost(post:Post) throws -> Observable<Result<Post, ErrorModel>> {
@@ -54,7 +54,7 @@ class APIClient {
       payload: post.dictionaryValue)
       .asURLRequest()
 
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func fetchComments() throws -> Observable<Result<[Comment], ErrorModel>> {
@@ -63,7 +63,7 @@ class APIClient {
       path: "comments")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func fetchAlbums() throws -> Observable<Result<[Album], ErrorModel>> {
@@ -72,7 +72,7 @@ class APIClient {
       path: "albums")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func fetchPhotos() throws -> Observable<Result<[Photo], ErrorModel>> {
@@ -81,7 +81,7 @@ class APIClient {
       path: "photos")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func fetchTodos() throws -> Observable<Result<[Todo], ErrorModel>> {
@@ -90,7 +90,7 @@ class APIClient {
       path: "todos")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func fetchUsers() throws -> Observable<Result<[User],ErrorModel>> {
@@ -100,7 +100,7 @@ class APIClient {
       path: "users")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
   
   func deleteUser(userId:Int) throws -> Observable<Result<RawResponse,ErrorModel>> {
@@ -110,7 +110,7 @@ class APIClient {
       path: "users/\(userId)")
       .asURLRequest()
     
-    return try caller.call(request)
+    return caller.call(request)
   }
 }
 
