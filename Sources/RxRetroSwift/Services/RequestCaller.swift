@@ -38,11 +38,12 @@ public class RequestCaller{
               let statusCode = httpResponse.statusCode
               
               do {
+                let _data = data ?? Data()
                 if (200...399).contains(statusCode) {
-                  let objs = try _self.decoder.decode(ItemModel.self, from: data!)
+                  let objs = try _self.decoder.decode(ItemModel.self, from: _data)
                   observer.onNext(Result.successful(objs))
                 } else {
-                  var error = try _self.decoder.decode(DecodableErrorModel.self, from: data!)
+                  var error = try _self.decoder.decode(DecodableErrorModel.self, from: _data)
                   error.errorCode = statusCode
                   observer.onNext(Result.failure(error))
                 }
@@ -71,16 +72,16 @@ public class RequestCaller{
         
         let task = _self.urlSession
           .dataTask(with: request) { (data, response, error) in
-            
+            let _data = data ?? Data()
             if let httpResponse = response as? HTTPURLResponse{
               let statusCode = httpResponse.statusCode
               
               do {
                 if (200...399).contains(statusCode) {
-                  let plainResponse = RawResponse(statusCode: statusCode, data: data)
+                  let plainResponse = RawResponse(statusCode: statusCode, data: _data)
                   observer.onNext(Result.successful(plainResponse))
                 } else {
-                  var error = try _self.decoder.decode(DecodableErrorModel.self, from: data!)
+                  var error = try _self.decoder.decode(DecodableErrorModel.self, from: _data)
                   error.errorCode = statusCode
                   observer.onNext(Result.failure(error))
                 }
