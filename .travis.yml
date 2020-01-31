@@ -5,10 +5,10 @@ jobs:
     - stage: Testing
       before_install:
         - gem install cocoapods
-      script: 
+      script:
         - cd Example
         - pod install
-        - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' -quiet
+        - xcodebuild test -workspace RxRetroSwift.xcworkspace -scheme RxRetroSwift-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6 Plus' -quiet
     - stage: Swift Package Manager
       script:
         - swift build
