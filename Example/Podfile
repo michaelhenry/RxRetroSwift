@@ -1,5 +1,5 @@
 use_frameworks!
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'RxRetroSwift_Example' do
   pod 'RxRetroSwift', :path => '../'
@@ -7,8 +7,8 @@ target 'RxRetroSwift_Example' do
   target 'RxRetroSwift_Tests' do
     inherit! :search_paths
     
-    pod 'Quick', '~> 1.2.0'
-    pod 'RxNimble', '~> 4.1.0'
+    pod 'Quick'
+    pod 'RxNimble'
   end
 end
 

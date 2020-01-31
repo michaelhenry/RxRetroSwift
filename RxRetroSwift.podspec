@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxRetroSwift'
-  s.version          = ENV["RXRETROFIT_VERSION"] || '2.0.0'
+  s.version          = ENV["RXRETROFIT_VERSION"] || '3.0.0'
   s.summary          = 'A Simple, Neat and Clean, Easy to use Reactive RetroFit inspired implementation in swift.'
 
 # This description is used to generate tags and improve search results.
@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
   s.author           = { 'Michael Henry Pantaleon' => 'me@iamkel.net' }
   s.source           = { :git => 'https://github.com/michaelhenry/RxRetroSwift.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/michaelhenry119'
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
   s.source_files = 'Sources/RxRetroSwift/**/*'
-  s.dependency 'RxSwift', '~> 4.1'
-  s.dependency 'RxCocoa', '~> 4.1'
+  s.dependency 'RxSwift', '~> 5.0'
+  s.dependency 'RxCocoa', '~> 5.0'
 end
