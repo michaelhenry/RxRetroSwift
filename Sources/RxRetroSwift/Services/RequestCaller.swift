@@ -50,7 +50,7 @@ public class RequestCaller{
               } catch {
                 var decodingError = DecodableErrorModel()
                 decodingError.errorCode = -1
-                decodingError.errorDetail = error.localizedDescription
+                decodingError.errorDetail = "\(error)"
                 observer.onNext(Result.failure(decodingError))
               }
             }
@@ -89,7 +89,7 @@ public class RequestCaller{
               } catch {
                 var decodingError = DecodableErrorModel()
                 decodingError.errorCode = -1
-                decodingError.errorDetail = error.localizedDescription
+                decodingError.errorDetail = "\(error)"
                 observer.onNext(Result.failure(decodingError))
               }
               observer.on(.completed)
